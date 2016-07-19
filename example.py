@@ -485,7 +485,8 @@ def get_args():
         "-ol",
         "--onlylure",
         help='Display only lured pokéstop',
-        action='store_true')
+        action='store_true',
+        default=True)
     parser.add_argument(
         '-c',
         '--china',
