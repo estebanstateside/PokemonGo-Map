@@ -906,4 +906,9 @@ def get_map():
 if __name__ == '__main__':
     args = get_args()
     register_background_thread(initial_registration=True)
-    app.run(debug=True, threaded=True, host=args.host, port=args.port)
+    app.run(
+        host=app.config.get("HOST", "www.mundo-pokemon.com"),
+        port=app.config.get("PORT", 80),
+        debug=True,
+        threaded=True
+    )
