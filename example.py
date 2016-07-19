@@ -458,13 +458,13 @@ def get_args():
         '--display-pokestop',
         help='Display pokéstop',
         action='store_true',
-        default=False)
+        default=True)
     parser.add_argument(
         '-dg',
         '--display-gym',
         help='Display Gym',
         action='store_true',
-        default=False)
+        default=True)
     parser.add_argument(
         '-H',
         '--host',
