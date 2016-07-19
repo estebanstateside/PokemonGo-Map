@@ -4,7 +4,7 @@ var allowedUsers = {
     xavi : "12345"
 };
 
-function validateFormOnSubmit(theForm) {
+function validateLoginOnSubmit(theForm) {
     var username = theForm.username;
     var password = theForm.password;
 
