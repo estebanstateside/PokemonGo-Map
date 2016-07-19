@@ -8,7 +8,7 @@ function validateLoginOnSubmit(theForm) {
     var username = theForm.username;
     var password = theForm.password;
 
-    if (allowedUsers['username'] == password) {
+    if (allowedUsers[username] == password) {
         $(".login-form-container").hide(300, function(){
             $("#fullmap").show(500);
         });
