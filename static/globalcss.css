@@ -1,10 +1,9 @@
 @font-face {
-    font-family: Pokemon Hollow;
-    src: url(static/fonts/Pokemon Hollow.ttf);
-}
-@font-face {
-    font-family: Pokemon Bold;
-    src: url(static/fonts/Pokemon Bold.ttf);
+	font-family: 'Pokemon Hollow';
+	src: url('static/fonts/Pokemon Hollow.eot');
+	src: local('☺'), url('static/fonts/Pokemon Hollow.woff') format('woff'), url('static/fonts/Pokemon Hollow.ttf') format('truetype'), url('static/fonts/Pokemon Hollow.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 h1.main-head {
