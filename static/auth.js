@@ -28,6 +28,3 @@ pokemonGoApp.authFunctionality = (function(){
     }
 
 })();
-
-// Initialize Modal Functionality
-pokemonGoApp.authFunctionality.init();
