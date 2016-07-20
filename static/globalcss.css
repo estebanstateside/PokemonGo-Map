@@ -21,13 +21,21 @@ html, body {
     width: 100%;
 }
 
-#bg {
-    left: 0;
-    max-width: 100%;
-    min-width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: -1;
+html {
+	background-image:url('/static/background.jpg');
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-color: black;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	height:100%;
+	overflow: scroll;
 }
 
 .login-form-container {
