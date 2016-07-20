@@ -657,7 +657,7 @@ def process_step(args, api_endpoint, access_token, profile_response,
                 for wild in cell.WildPokemon:
                     hash = wild.SpawnPointId;
                     if hash not in seen.keys() or (seen[hash].TimeTillHiddenMs <= wild.TimeTillHiddenMs):
-                        visible.append(wild)    
+                        visible.append(wild)
                     seen[hash] = wild.TimeTillHiddenMs
                 if cell.Fort:
                     for Fort in cell.Fort:
@@ -907,9 +907,4 @@ def get_map():
 if __name__ == '__main__':
     args = get_args()
     register_background_thread(initial_registration=True)
-    app.run(
-        host=app.config.get("HOST", "www.mundo-pokemon.com"),
-        port=app.config.get("PORT", 789),
-        debug=True,
-        threaded=True
-    )
+    app.run(debug=True, threaded=True, host=args.host, port=args.port)
