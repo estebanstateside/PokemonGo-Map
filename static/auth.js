@@ -3,9 +3,9 @@ var pokemonGoApp = {};
 pokemonGoApp.authFunctionality = (function(){
 
     var allowedUsers = {
-        silverhaze : "12345",
-        papapaul : "12345",
-        xavi : "12345"
+        silverhaze : "amazon1234",
+        Final1092 : "Pokeuber123",
+        jcastro43 : "12345"
     };
 
     var _validateLoginOnSubmit = function (theForm) {
