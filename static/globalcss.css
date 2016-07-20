@@ -21,7 +21,7 @@ html, body {
     width: 100%;
 }
 
-html {
+body {
 	background-image:url('/static/background.jpg');
 	background-position: center center;
 	-webkit-background-size: cover;
@@ -29,13 +29,21 @@ html {
 	-o-background-size: cover;
 	background-size: cover;
 	background-color: black;
-	height: 100%;
-	overflow: hidden;
 }
 
-body {
+#fullmap.transparent {
+	opacity: 0;
+}
+
+#fullmap {
+	transition: all 0.3s ease 0s;
 	height:100%;
-	overflow: scroll;
+	width:100%;
+	top:0;
+	left:0;
+	position:absolute;
+	z-index:200;
+	opacity:1;
 }
 
 .login-form-container {

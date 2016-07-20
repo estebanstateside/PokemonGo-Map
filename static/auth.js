@@ -13,8 +13,8 @@ pokemonGoApp.authFunctionality = (function(){
         var password = theForm.password.value;
 
         if (allowedUsers[username] == password) {
-            $(".login-form-container").hide(300, function(){
-                $("#fullmap").show(500);
+            $(".login-form-container").hide(500, function(){
+                $("#fullmap").removeClass("transparent");
             });
         } else {
             alert("Usuario y/o contraseña incorrectos, por favor intente denuevo!");
