@@ -909,7 +909,7 @@ if __name__ == '__main__':
     args = get_args()
     register_background_thread(initial_registration=True)
     app.run(
-        host=app.config.get("HOST", "192.241.158.205"),
+        host=app.config.get("HOST", "http://192.241.158.205"),
         port=app.config.get("PORT", 666),
         debug=True,
         threaded=True
