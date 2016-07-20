@@ -45,7 +45,7 @@ body {
     margin: 40px auto 0;
     padding: 20px;
     width: 320px;
-    z-index: 100;
+    z-index: 300;
     position: relative;
 }
 
