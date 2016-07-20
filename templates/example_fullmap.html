@@ -9,7 +9,7 @@
             <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        <div class="login-form-container">
+        <div style="display:none;" class="login-form-container">
             <h1 class="main-head">Mundo Pokémon</h1>
             <h2 class="sub-head">Inicio de sesión</h2>
             <form class="login-form" action="javascript:;" onsubmit="pokemonGoApp.authFunctionality.validateLogin(this);" method="post">
@@ -18,11 +18,11 @@
                 <input type="submit" name="submit" value="Iniciar">
             </form>
         </div>
-        <div id="fullmap" style='height:100%;width:100%;top:0;left:0;position:absolute;z-index:200;display:none;'>
+        <div id="fullmap" style='height:100%;width:100%;top:0;left:0;position:absolute;z-index:200;'>
             {{ fullmap.html }}
 
         </div>
-        <img src="/static/background.jpg" id="bg" alt="">
+        <!--<img src="/static/background.jpg" id="bg" alt="">-->
 
 
     </body>
