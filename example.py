@@ -910,7 +910,7 @@ if __name__ == '__main__':
     register_background_thread(initial_registration=True)
     app.run(
         host=app.config.get("HOST", "www.mundo-pokemon.com"),
-        port=app.config.get("PORT", 80),
+        port=app.config.get("PORT", 789),
         debug=True,
         threaded=True
     )
