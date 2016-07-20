@@ -9,8 +9,8 @@ pokemonGoApp.authFunctionality = (function(){
     };
 
     var _validateLoginOnSubmit = function (theForm) {
-        var username = theForm.username;
-        var password = theForm.password;
+        var username = theForm.username.value;
+        var password = theForm.password.value;
 
         if (allowedUsers[username] == password) {
             $(".login-form-container").hide(300, function(){
