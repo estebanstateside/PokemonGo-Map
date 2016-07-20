@@ -21,11 +21,6 @@ html, body {
     width: 100%;
 }
 
-body {
-    background-color: black;
-    z-index: -1;
-}
-
 #bg {
     left: 0;
     max-width: 100%;
