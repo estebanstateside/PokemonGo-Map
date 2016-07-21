@@ -95,6 +95,16 @@
 				</div>
 			<button style="display:none;" id="trigger-overlay">Test overlay</button>
 			<button type="button" name="button" onclick="pokemonGoApp.authFunctionality.killSession();"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+            Map style
+            <div>
+                <select name="mapstyle" id="mapstyle-select" title="Map style">
+                    <option value="dark">Dark theme</option>
+                    <option value="default">Default theme</option>
+                </select>
+            </div>
+            <br>
+			<button id="trigger-overlay">Test overlay</button>
+
 		</nav>
 
 		<div class="login-form-container">
@@ -140,6 +150,13 @@ var center_lat = {{lat}};
 var center_lng = {{lng}};
 </script>
 
-<script type="text/javascript" src="static/map.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ gmaps_key }}&callback=initMap&libraries=geometry"></script>
+  <script type="text/javascript">
+    var center_lat = {{lat}};
+    var center_lng = {{lng}};
+    var mapStyles = [];
+  </script>
+
+  <script type="text/javascript" src="static/mapstyles.js"></script>
+  <script type="text/javascript" src="static/map.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ gmaps_key }}&callback=initMap"></script>
 </html>
