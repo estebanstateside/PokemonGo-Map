@@ -10,10 +10,11 @@ pokemonGoApp.authFunctionality = (function(){
 
     var _init = function(){
         // Check session status
-        if (!localStorage.getItem("sessionOpen") === null) {
+        if("sessionOpen" in localStorage){
           // User is logged in!
           $(".login-form-container").hide(500, function(){
               $("#fullmap").removeClass("transparent");
+              $(".map-controls").removeClass("transparent");
           });
         }
     }
