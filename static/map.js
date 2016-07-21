@@ -1,11 +1,8 @@
 var map;
-var mymarker;
 
 var light2Style=[{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}];
 var darkStyle=[{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#b39964"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#181818"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"lightness":17},{"color":"#525252"}]}];
 var pGoStyle=[{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#a1f199"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.fill","stylers":[{"color":"#37bda2"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.fill","stylers":[{"color":"#37bda2"}]},{"featureType":"poi.attraction","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"poi.business","elementType":"geometry.fill","stylers":[{"color":"#e4dfd9"}]},{"featureType":"poi.business","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#37bda2"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#84b09e"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"color":"#fafeb8"},{"weight":"1.25"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#5ddad6"}]}];
-var mapStyleCookie = 'map-style';
-var defaultMapStyle = 'light';
 
 var selectedStyle = 'light';
 
@@ -54,22 +51,9 @@ function initMap() {
         map: map,
         animation: google.maps.Animation.DROP
     });
-}
 
-function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
+};
 
-function setCookie(name, value, expires, path, domain, secure) {
-            expires instanceof Date ? expires = expires.toGMTString() : typeof(expires) == 'number' && (expires = (new Date(+(new Date) + expires * 1e3)).toGMTString());
-            var r = [name + "=" + escape(value)], s, i;
-            for(i in s = {expires: expires, path: path, domain: domain}){
-                s[i] && r.push(i + "=" + s[i]);
-            }
-            return secure && r.push("secure"), document.cookie = r.join(";"), true;
-}
 
 function pokemonLabel(name, id, disappear_time, latitude, longitude) {
     disappear_date = new Date(disappear_time)
@@ -134,7 +118,7 @@ function setupPokemonMarker(item) {
     });
 
     marker.infoWindow = new google.maps.InfoWindow({
-        content: pokemonLabel(item.pokemon_name, item.disappear_time, item.pokemon_id, item.disappear_time, item.latitude, item.longitude)
+        content: pokemonLabel(item.pokemon_name, item.pokemon_id, item.disappear_time, item.latitude, item.longitude)
     });
 
     addListeners(marker);
@@ -189,6 +173,16 @@ function addListeners(marker) {
         marker.persist = null;
     });
 
+    marker.addListener('mouseover', function() {
+        marker.infoWindow.open(map, marker);
+        updateLabelDiffTime();
+    });
+
+    marker.addListener('mouseout', function() {
+        if (!marker.persist) {
+            marker.infoWindow.close();
+        }
+    });
     return marker
 };
 
@@ -230,8 +224,9 @@ function updateMap() {
         $.each(result.pokestops, function(i, item) {
             if (!document.getElementById('pokestops-switch').checked) {
                 return false;
-            } else { // add marker to map and item to dict
-                if (item.marker) item.marker.setMap(null);
+            } else if (!(item.pokestop_id in map_pokestops)) { // add marker to map and item to dict
+                  // add marker to map and item to dict
+                  if (item.marker) item.marker.setMap(null);
                 item.marker = setupPokestopMarker(item);
                 map_pokestops[item.pokestop_id] = item;
             }
@@ -302,10 +297,6 @@ $('#pokestops-switch').change(function() {
     }
 });
 
-$('#mapstyle-select').change(function() {
-    saveStyle($(this).val());
-});
-
 var updateLabelDiffTime = function() {
     $('.label-countdown').each(function(index, element) {
         var disappearsAt = new Date(parseInt(element.getAttribute("disappears-at")));
@@ -333,27 +324,3 @@ var updateLabelDiffTime = function() {
 };
 
 window.setInterval(updateLabelDiffTime, 1000);
-window.setInterval(getLocation, 1000);
-function getLocation() {
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }
-}
-
-
-function showPosition(position) {
-  var baseURL = location.protocol + "//" + location.hostname + (location.port ? ":"+location.port: "");
-  lat = position.coords.latitude;
-  lon = position.coords.longitude;
-  $.post(baseURL + "/next_loc?lat=" + lat + "&lon=" + lon).done(function(){
-    var center = new google.maps.LatLng(lat, lon);
-    if((google.maps.geometry.spherical.computeDistanceBetween(center, map.getCenter()) / 1000) > 4)
-      map.panTo(center);
-    mymarker.setPosition(center);
-  });
-
-}
-
-$(document).ready(function() {
-    $('#mapstyle-select').val(getCookie(mapStyleCookie) || 'dark');
-});
