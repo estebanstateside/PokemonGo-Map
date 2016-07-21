@@ -143,22 +143,13 @@ message ResponseEnvelop {
     required int32 FortType = 9;
     required int64 GymPoints = 10;
     required bool IsInBattle = 11;
-  // Might represent the type of item applied to the pokestop, right now only lures can be applied
-    optional bytes ActivePortModifier = 12;
-    optional FortLureInfoProto LureInfo = 13;
+    //unknown ActiveFortModifier = 12;
+    optional MapPokemonProto ActivePokemon = 13;
     required int64 CooldownCompleteMs = 14;
     // ENUM.Holoholo.Rpc.Sponsor.Types.FortSponsor.Sponsor Sponsor = 15;
     required int32 Sponsor = 15;
     // ENUM.Holoholo.Rpc.RenderingType.Types.FortRenderingType.RenderingType RenderingType = 16;
     optional int32 RenderingType = 16;
-  }
-
-  message FortLureInfoProto {
-    required string FortId = 1;
-    required double unknown2 = 2;
-    required int32 ActivePokemonId = 3;
-    required int64 LureExpiresTimestampMs = 4;
-    required string DeployerPlayerCodename = 5;
   }
 
   message PokemonSummaryFortProto {
@@ -203,13 +194,13 @@ message ResponseEnvelop {
     required int64 creation_time = 1;
     optional string username = 2;
     optional int32 team = 5;
-    optional bytes tutorial = 7; 
-    optional AvatarDetails avatar = 8; 
+    optional bytes tutorial = 7;
+    optional AvatarDetails avatar = 8;
     optional int32 poke_storage = 9;
     optional int32 item_storage = 10;
-    optional DailyBonus daily_bonus = 11;
-    optional bytes unknown12 = 12;
-    optional bytes unknown13 = 13;
+    optional string unknown11 = 11;
+    optional string unknown12 = 12;
+    optional string unknown13 = 13;
     repeated Currency currency = 14;
 
     message AvatarDetails {
@@ -217,11 +208,6 @@ message ResponseEnvelop {
       optional int32 unknown3 = 3;
       optional int32 unknown9 = 9;
       optional int32 unknown10 = 10;
-    }
-
-    message DailyBonus {
-      optional int64 NextCollectTimestampMs = 1;
-      optional int64 NextDefenderBonusCollectTimestampMs = 2;
     }
 
     message Currency {

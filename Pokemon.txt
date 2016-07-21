@@ -1,0 +1,90 @@
+python example.py -u xcastrox -p interboy -l "iglesia de tibas" -st 10
+
+
+pip install -r requirements.txt
+
+[17/7 8:00 PM] ?+506 6040 4062?: No es una pagina tuve que hacer un monton de varas y una cuenta nueva por si banean xD es en la compu les voy a pasar el link para que vean
+[17/7 8:04 PM] ?+506 6040 4062?: YA ESTÁ!!!
+pero primero deben de leer muy bien las instrucciones, de lo contrario les puede dar error :)
+Cosas que necesitan:
+Python 2.7.X (OBLIGATORIO de que sea 2.7)
+Paciencia
+
+Notas: 
+En Windows 10 (o por lo menos en mi PC) da errores :/
+Necesitan crearse una nueva cuenta de Pokémon Club, puede que Niantic dé BAN por esto.
+SÓLO funciona con cuentas de Club Pokémon, las de google no :/
+
+Primero, necesitas instalar Python de aquí 
+https://www.python.org/downloads/ 
+, escoge el que dice Python 2.7.X. Luego, instala pip, un manager de paquetes para extensiones de Python. Las instrucciones de instalacion estan aqui 
+https://pip.pypa.io/en/stable/installing/ 
+, pero si eres muy flojo:
+
+1.- descarga get-pip.py 
+https://bootstrap.pypa.io/get-pip.py 
+(click derecho, escoge "guardar enlace como", guardalo como "get-pip.py")
+
+2.-Ejecuta el archivo descargado usando Python (puedes darle doble click si Python esta instalado correctamente)
+
+3.-Una vez que este terminado, pip ya esta instalado!
+luego necesitas crear una cuenta del Club Pokémon, que se puede hacer aquí 
+https://club.pokemon.com/us/pokemon-trainer-club/sign-up/ 
+(por favor, ten en cuenta que probablemente no estará disponible una gran parte del tiempo, entonces actualiza cada 15 minutos más o menos si no se puede entrar). 
+
+
+Después de eso , descarga el programa de OP haciendo click en el boton verde " Clone or Download" de aquí 
+https://github.com/AHAAAAAAA/PokemonGo-Map 
+y haz clic en "Download Zip".
+
+
+Una vez descargado el archivo, descomprime el zip usando tu programa favorito, a continuación, abre una ventana de comandos o terminal a la ubicación de los archivos descomprimidos (en Windows, ve a la carpeta donde están todos los archivos descomprimidos, presiona shift y click derecho sobre la carpeta y selecciona "Abrir ventana de Comandos aqui"). 
+Dentro de esta ventana de comandos, escribe lo siguiente:
+
+
+
+pip install -r requirements.txt
+
+
+
+Cuando eso esté hecho //va a tardar un rato// , escribe:
+
+
+
+python example.py -u ** -p ** -l "alguna ubicacion" -st 10
+
+
+
+Reemplaza los asteriscos con el nombre de usuario y la contraseña de tu cuenta de Club Pokémon, MANTEN EL -u Y EL -p, y reemplaza "Alguna Ubicacion" por un lugar real del mundo, como "Union Square, San Francisco" o cordenadas con latitud y longitud, como "40.7588951, -73.9873815". El número antes de -st es el numero de pasos que toma, basicamente tu distancia de busqueda, mayor numero = lejos 
+
+Checa la ventana de terminal/comando hasta que diga 100%, entonces abre tu navegador y escribe: 
+http://localhost:5000 
+en la barra de URL.
+
+***PREGUNTAS:***
+P: Mi computadora dice "Python is not recognized"/Python no es reconocido!
+R: Primero, reinicia para asegurarte de que no se debía a que algunos cambios no se han aplicado y vuelve a intentarlo.
+Si eso no soluciona el problema, abre una ventana del explorador y encuentra la ruta de instalación de Python, la que debería ser C:\Python27 o C:\Users\TUNOMBREDEUSUARIO\AppData\Programs\Python\Python27 (Los directorios Python podrían tener otro nombre dependiendo de la versión que has instalado, por lo que no sólo debes copiar y pegar!)
+una vez que encuentres donde está Python, recuerda la ruta, entonces abre CMD como administrador y escribe:
+
+setx PATH "%PATH%;C:\Python27RUTA A TU INSTALACION DE PYTHON"
+
+y reemplazar RUTA A TU INSTALACION DE PYTHON por la ruta actual hacia donde está python, incluyendo la letra de unidad y todo. Es probable que necesites cerrar la sesión y volver a iniciarla o reiniciar para que los cambios surtan efecto.
+
+P: Mi computadora dice "pip is not recognized"/pip no es reconocido!
+R: Igual que en la anterior, pero añades "\Scripts\pip" en el extremo de la ruta del archivo para buscar.
+
+Dejé las preguntas y respuestas originales, pero si les da el error: "pip no es un archivo de lotes reconocido" ó "Python no es un archivo de lotes reconocido" o algo similar tienen que hacer lo siguiente:
+1.- Ir a Equipo y darle click derecho>Propiedades.
+2.-Ir a "Configuración avanzada del sistema" //Imágen 1//.
+3.-Ir a "Variables del entorno" //Imágen 2//.
+4.-Localizar los "Path" (Salen 2) //Imágen 3 y 4//.
+5.-Doble Click a un "Path" .
+6.- Una vez ahí le dan a "Nuevo" y meten la ruta donde está Python //Imágen 5//.
+7.-Le dan otra vez a "Nuevo" y meten la ruta de Python, pero agregandole "\Scripts" //Imágen 5//.
+8.- Le dan a "Aceptar".
+9.-Hacen lo mismo con el otro "Path".
+10.- Aceptar, Aceptar, Aceptar, Cerrar.
+
+Cualquier duda INTENTARÉ responderla ;)
+[17/7 8:04 PM] ?+506 6040 4062?: Tuve que copiarlo todo no me deja copiar el enlace por ser un grupo
