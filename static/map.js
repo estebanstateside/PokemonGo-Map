@@ -28,9 +28,16 @@ function initMap() {
             {
                 "featureType": "poi",
                 "elementType": "all",
+                "featureType": "poi",
                 "stylers": [
                     {
-                        "color": "#000000"
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 51
+                    },
+                    {
+                        "visibility": "simplified"
                     }
                 ]
             },
