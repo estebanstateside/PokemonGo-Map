@@ -186,17 +186,7 @@ function addListeners(marker) {
     google.maps.event.addListener(marker.infoWindow, 'closeclick', function() {
         marker.persist = null;
     });
-
-    marker.addListener('mouseover', function() {
-        marker.infoWindow.open(map, marker);
-        updateLabelDiffTime();
-    });
-
-    marker.addListener('mouseout', function() {
-        if (!marker.persist) {
-            marker.infoWindow.close();
-        }
-    });
+    
     return marker
 };
 
