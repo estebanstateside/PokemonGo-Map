@@ -10,7 +10,7 @@ pokemonGoApp.authFunctionality = (function(){
 
     var _init = function(){
         // Check session status
-        if (localStorage.getItem("infiniteScrollEnabled") !== null) {
+        if (localStorage.getItem("sessionOpen") !== null) {
           // User is logged in!
           $(".login-form-container").hide(500, function(){
               $("#fullmap").removeClass("transparent");
