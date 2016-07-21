@@ -7,87 +7,9 @@ function initMap() {
             lng: center_lng
         },
         zoom: 16,
-        styles: [
-            {
-                "featureType": "landscape",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 65
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 51
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 30
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.local",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 40
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "administrative.province",
+        styles: [{
+                 "featureType": "administrative.locality",
+                "elementType": "all",
                 "stylers": [
                     {
                         "visibility": "off"
@@ -95,36 +17,74 @@ function initMap() {
                 ]
             },
             {
-                "featureType": "water",
-                "elementType": "labels",
+                "featureType": "landscape",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "visibility": "on"
+                        "color": "#AFFFA0"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#EAFFE5"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.business",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.government",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                {
+                        "color": "#59A499"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#F0FF8D"
                     },
                     {
-                        "lightness": -25
-                    },
-                    {
-                        "saturation": -100
+                        "weight": 2.2
                     }
                 ]
             },
             {
                 "featureType": "water",
-                "elementType": "geometry",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "hue": "#ffff00"
+                        "visibility": "on"
                     },
                     {
-                        "lightness": -25
-                    },
-                    {
-                        "saturation": -97
+                        "color": "#1A87D6"
                     }
                 ]
-            }
-        ]
+        }]
     });
 
     marker = new google.maps.Marker({
