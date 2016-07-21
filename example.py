@@ -54,7 +54,7 @@ SESSION.verify = False
 global_password = None
 global_token = None
 access_token = None
-DEBUG = True
+DEBUG = False
 VERBOSE_DEBUG = False  # if you want to write raw request/response to the console
 COORDS_LATITUDE = 0
 COORDS_LONGITUDE = 0
@@ -500,7 +500,7 @@ def get_args():
     	default=False)
     parser.add_argument(
         '-d', '--debug', help='Debug Mode', action='store_true')
-    parser.set_defaults(DEBUG=True)
+    parser.set_defaults(DEBUG=False)
     return parser.parse_args()
 
 @memoize
