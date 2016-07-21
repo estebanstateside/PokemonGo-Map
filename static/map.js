@@ -210,7 +210,7 @@ function updateMap() {
 
         clearStaleMarkers();
 
-        if (result.pokemons.length > 0) {
+        if (typeof result.pokemons !== 'undefined') {
             $.each(result.pokemons, function(i, item){
                 if (!document.getElementById('pokemon-switch').checked) {
                     return false; // in case the checkbox was unchecked in the meantime.
@@ -226,7 +226,7 @@ function updateMap() {
         }
 
 
-        if (result.pokestops.length > 0) {
+        if (typeof result.pokestops !== 'undefined') {
             $.each(result.pokestops, function(i, item) {
                 if (!document.getElementById('pokestops-switch').checked) {
                     return false;
@@ -240,7 +240,7 @@ function updateMap() {
             });
         }
 
-        if (result.gyms.length > 0) {
+        if (typeof result.gyms !== 'undefined') {
             $.each(result.gyms, function(i, item){
                 if (!document.getElementById('gyms-switch').checked) {
                     return false; // in case the checkbox was unchecked in the meantime.
