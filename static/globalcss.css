@@ -31,7 +31,7 @@ body {
 	background-color: black;
 }
 
-#fullmap.transparent {
+.transparent {
 	opacity: 0;
 }
 
@@ -102,4 +102,21 @@ h2.sub-head {
     padding-bottom: 20px;
     width: 100% !important;
     transition: all 0.1s ease 0s;
+}
+
+.map-controls {
+    bottom: 0;
+    font-size: 30px;
+    opacity: 1;
+    position: fixed;
+    transition: all 0.2s ease 0s;
+    z-index: 200;
+}
+
+.map-controls > button {
+    background-color: #ff6262;
+    border: 0 solid;
+    border-radius: 40px;
+    margin-bottom: 5px;
+    margin-left: 5px;
 }

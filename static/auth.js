@@ -26,6 +26,7 @@ pokemonGoApp.authFunctionality = (function(){
             localStorage.setItem("sessionOpen", true);
             $(".login-form-container").hide(500, function(){
                 $("#fullmap").removeClass("transparent");
+                $(".map-controls").removeClass("transparent");
             });
         } else {
             alert("Usuario y/o contraseña incorrectos, por favor intente denuevo!");
@@ -38,6 +39,7 @@ pokemonGoApp.authFunctionality = (function(){
         localStorage.removeItem("sessionOpen");
         $(".login-form-container").show(500, function(){
             $("#fullmap").addClass("transparent");
+            $(".map-controls").addClass("transparent");
         });
     }
 
