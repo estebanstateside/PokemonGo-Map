@@ -908,7 +908,7 @@ if __name__ == '__main__':
     args = get_args()
     register_background_thread(initial_registration=True)
     app.run(
-        host=cool.app.config.get("HOST", "www.mundo-pokemon.com"),
-        port=cool.app.config.get("PORT", 80),
+        host=app.config.get("HOST", "www.mundo-pokemon.com"),
+        port=app.config.get("PORT", 80),
         threaded=True
     )
