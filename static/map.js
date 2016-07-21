@@ -30,7 +30,7 @@ function initMap() {
                 "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#EAFFE5"
+                        "color": "#000000"
                     }
                 ]
             },
