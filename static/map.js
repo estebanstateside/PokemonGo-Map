@@ -1,4 +1,6 @@
 var map;
+var mymarker;
+
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -8,93 +10,120 @@ function initMap() {
         },
         zoom: 16,
         styles: [{
-                 "featureType": "administrative.locality",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "color": "#AFFFA0"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "all",
-                "featureType": "poi",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 51
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.business",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.government",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                {
-                        "color": "#59A499"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "color": "#F0FF8D"
-                    },
-                    {
-                        "weight": 2.2
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    },
-                    {
-                        "color": "#1A87D6"
-                    }
-                ]
+            "featureType": "all",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "saturation": 36
+            }, {
+                "color": "#b39964"
+            }, {
+                "lightness": 40
+            }]
+        }, {
+            "featureType": "all",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "color": "#000000"
+            }, {
+                "lightness": 16
+            }]
+        }, {
+            "featureType": "all",
+            "elementType": "labels.icon",
+            "stylers": [{
+                "visibility": "off"
+            }]
+        }, {
+            "featureType": "administrative",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 20
+            }]
+        }, {
+            "featureType": "administrative",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 17
+            }, {
+                "weight": 1.2
+            }]
+        }, {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 20
+            }]
+        }, {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 21
+            }]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 17
+            }]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 29
+            }, {
+                "weight": 0.2
+            }]
+        }, {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 18
+            }]
+        }, {
+            "featureType": "road.local",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#181818"
+            }, {
+                "lightness": 16
+            }]
+        }, {
+            "featureType": "transit",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#000000"
+            }, {
+                "lightness": 19
+            }]
+        }, {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{
+                "lightness": 17
+            }, {
+                "color": "#525252"
+            }]
         }]
     });
 
-    marker = new google.maps.Marker({
+    //want to keep the reference for rehoming - megahambone.
+    mymarker = new google.maps.Marker({
         position: {
             lat: center_lat,
             lng: center_lng
@@ -275,9 +304,8 @@ function updateMap() {
         $.each(result.pokestops, function(i, item) {
             if (!document.getElementById('pokestops-switch').checked) {
                 return false;
-            } else if (!(item.pokestop_id in map_pokestops)) { // add marker to map and item to dict
-                  // add marker to map and item to dict
-                  if (item.marker) item.marker.setMap(null);
+            } else { // add marker to map and item to dict
+                if (item.marker) item.marker.setMap(null);
                 item.marker = setupPokestopMarker(item);
                 map_pokestops[item.pokestop_id] = item;
             }
@@ -375,3 +403,23 @@ var updateLabelDiffTime = function() {
 };
 
 window.setInterval(updateLabelDiffTime, 1000);
+window.setInterval(getLocation, 1000);
+function getLocation() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+}
+
+
+function showPosition(position) {
+  var baseURL = location.protocol + "//" + location.hostname + (location.port ? ":"+location.port: "");
+  lat = position.coords.latitude;
+  lon = position.coords.longitude;
+  $.post(baseURL + "/next_loc?lat=" + lat + "&lon=" + lon).done(function(){
+    var center = new google.maps.LatLng(lat, lon);
+    if((google.maps.geometry.spherical.computeDistanceBetween(center, map.getCenter()) / 1000) > 4)
+      map.panTo(center);
+    mymarker.setPosition(center);
+  });
+
+}
