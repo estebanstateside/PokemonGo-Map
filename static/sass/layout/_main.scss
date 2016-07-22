@@ -28,6 +28,6 @@ html, body {
 #map {
 	top: 3.5em;
 	bottom: 0px;
-  height: unset;
+  height: calc(100vh - 35px);
   width: 100vw;
 }

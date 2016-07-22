@@ -3,7 +3,7 @@ var pokemonGoApp = {};
 pokemonGoApp.authFunctionality = (function(){
 
     var allowedUsers = {
-        silverhaze : "amazon1234",
+        silverhaze : "silverlight",
         final1092 : "pokeuber123",
         jcastro43 : "interboy"
     };
@@ -14,6 +14,7 @@ pokemonGoApp.authFunctionality = (function(){
           // User is logged in!
           $(".login-form-container").hide(500, function(){
               $(".transparent").removeClass("transparent");
+              initMap();
           });
         }
     }
@@ -24,8 +25,10 @@ pokemonGoApp.authFunctionality = (function(){
 
         if (allowedUsers[username] == password) {
             localStorage.setItem("sessionOpen", true);
+            localStorage.setItem("currentUser", username);
             $(".login-form-container").hide(500, function(){
                 $(".transparent").removeClass("transparent");
+                initMap();
             });
         } else {
             alert("Usuario y/o contraseña incorrectos, por favor intente denuevo!");
