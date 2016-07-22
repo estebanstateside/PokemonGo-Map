@@ -157,7 +157,6 @@ function initSidebar() {
     $('#gyms-switch').prop('checked', localStorage.showGyms === 'true');
     $('#pokemon-switch').prop('checked', localStorage.showPokemon === 'true');
     $('#pokestops-switch').prop('checked', localStorage.showPokestops === 'true');
-    $('#lured-pokestops-switch').prop('checked', localStorage.showLuredPokestops === 'true');
 }
 
 var pad = function (number) { return number <= 99 ? ("0" + number).slice(-2) : number; }
@@ -304,8 +303,7 @@ function setupGymMarker(item) {
 function setupPokestopMarker(item) {
     var imagename = item.lure_expiration ? "PstopLured" : "Pstop";
     var luredPokestop = item.lure_expiration ? true : false;
-    if ((localStorage["showLuredPokestops"] == "true" && luredPokestop) ||
-        (localStorage["showLuredPokestops"] == "false" || !localStorage["showLuredPokestops"])
+    if (luredPokestop)
       ) {
         var marker = new google.maps.Marker({
             position: {
@@ -462,19 +460,6 @@ $('#pokestops-switch').change(function() {
             map_pokestops[key].marker.setMap(null);
         });
         map_pokestops = {}
-    }
-});
-
-$('#lured-pokestops-switch').change(function() {
-    localStorage["showLuredPokestops"] = this.checked;
-    if (this.checked) {
-        $.each(map_pokestops, function(key, value) {
-            if (map_pokestops[key].marker !== null && map_pokestops[key].marker.lured) {
-                map_pokestops[key].marker.setMap(null);
-            }
-        });
-    } else {
-        updateMap();
     }
 });
 
