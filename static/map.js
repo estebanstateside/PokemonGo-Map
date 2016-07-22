@@ -62,27 +62,6 @@ var pGoStyle=[{"featureType":"landscape.man_made","elementType":"geometry.fill",
 var selectedStyle = 'light';
 
 function initMap() {
-  
-  map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-          lat: center_lat,
-          lng: center_lng
-      },
-      zoom: 16,
-      streetViewControl: false,
-  		mapTypeControl: true,
-  		mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            position: google.maps.ControlPosition.RIGHT_TOP,
-            mapTypeIds: [
-                google.maps.MapTypeId.ROADMAP,
-                google.maps.MapTypeId.SATELLITE,
-                'dark_style',
-                'style_light2',
-                'style_pgo']
-          },
-  });
-
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
@@ -92,8 +71,8 @@ function initMap() {
         zoom: 16,
         fullscreenControl: true,
         streetViewControl: false,
-		mapTypeControl: true,
-		mapTypeControlOptions: {
+	      mapTypeControl: true,
+      	mapTypeControlOptions: {
           style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
           position: google.maps.ControlPosition.RIGHT_TOP,
           mapTypeIds: [
