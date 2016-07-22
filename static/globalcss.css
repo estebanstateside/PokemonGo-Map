@@ -133,3 +133,7 @@ h2.sub-head {
     margin-bottom: 5px;
     margin-left: 5px;
 }
+
+.select2-search__field {
+    color: black;
+}
