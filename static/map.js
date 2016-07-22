@@ -304,7 +304,9 @@ function setupGymMarker(item) {
 function setupPokestopMarker(item) {
     var imagename = item.lure_expiration ? "PstopLured" : "Pstop";
     var luredPokestop = item.lure_expiration ? true : false;
-    if ((localStorage["showLuredPokestops"] == "true" && luredPokestop) || localStorage["showLuredPokestops"] == "false") {
+    if ((localStorage["showLuredPokestops"] == "true" && luredPokestop) ||
+        (localStorage["showLuredPokestops"] == "false" || !localStorage["showLuredPokestops"])
+      ) {
         var marker = new google.maps.Marker({
             position: {
                 lat: item.latitude,
