@@ -5,7 +5,8 @@ pokemonGoApp.authFunctionality = (function(){
     var allowedUsers = {
         silverhaze : "silverlight",
         final1092 : "pokeuber123",
-        jcastro43 : "interboy"
+        jcastro43 : "interboy",
+        kleavercr : "kleavercr"
     };
 
     var _init = function(){
