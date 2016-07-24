@@ -21,6 +21,20 @@ html, body {
     width: 100%;
 }
 
+.gm-style > div:nth-child(7) {
+    float: right;
+    left: -95px;
+    position: relative !important;
+    top: 4px !important;
+}
+
+.gm-style > div:nth-child(11) {
+    float: right;
+    position: relative !important;
+    right: -50px !important;
+    top: 0 !important;
+}
+
 body {
 	background-image:url('/static/background.jpg');
 	background-position: center center;

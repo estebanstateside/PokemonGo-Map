@@ -36,7 +36,7 @@ def verify_config_file_exists(filename):
 
 def parse_config(args):
     verify_config_file_exists('../config/config.ini')
-    Config = ConfigParser.ConfigParser()
+    Config = ConfigParser()
     Config.read(os.path.join(os.path.dirname(__file__), '../config/config.ini'))
     args.auth_service = Config.get('Authentication', 'Service')
     args.username = Config.get('Authentication', 'Username')
@@ -48,15 +48,15 @@ def parse_config(args):
     args.no_pokestops = Config.getboolean('Search_Settings', 'Disable_Pokestops')
     args.no_gyms = Config.getboolean('Search_Settings', 'Disable_Gyms')
     if Config.get('Misc', 'Google_Maps_API_Key') :
-        args.gmaps_key = Config.get('Misc', 'Google_Maps_API_Key') 
-    args.host = Config.get('Misc', 'Host') 
-    args.port = Config.get('Misc', 'Port') 
-    
+        args.gmaps_key = Config.get('Misc', 'Google_Maps_API_Key')
+    args.host = Config.get('Misc', 'Host')
+    args.port = Config.get('Misc', 'Port')
+
     return args
 
 def parse_db_config(args):
     verify_config_file_exists('../config/config.ini')
-    Config = ConfigParser.ConfigParser()
+    Config = ConfigParser()
     Config.read(os.path.join(os.path.dirname(__file__), '../config/config.ini'))
     args.db_type = Config.get('Database','Type')
     args.db_name = Config.get('Database', 'Database_Name')
@@ -99,7 +99,7 @@ def get_args():
     args = parse_db_config(args)
 
     if (args.settings):
-        args = parse_config(args) 
+        args = parse_config(args)
     else:
         if (args.username is None or args.location is None or args.step_limit is None):
             parser.print_usage()

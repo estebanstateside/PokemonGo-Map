@@ -6,7 +6,7 @@ pokemonGoApp.authFunctionality = (function(){
         silverhaze : "silverlight",
         final1092 : "pokeuber123",
         jcastro43 : "interboy",
-        kleavercr : "kleavercr"
+        //kleavercr : "kleavercr"
     };
 
     var _init = function(){
