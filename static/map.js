@@ -159,6 +159,7 @@ function initSidebar() {
     $('#pokemon-switch').prop('checked', localStorage.showPokemon === 'true');
     $('#pokestops-switch').prop('checked', localStorage.showPokestops === 'true');
     $('#sound-switch').prop('checked', localStorage.playSound === 'true');
+    $('#scanned-switch').prop('checked', localStorage.showScanned === 'true');
 }
 
 function pad(number) { return number <= 99 ? ("0" + number).slice(-2) : number; }
