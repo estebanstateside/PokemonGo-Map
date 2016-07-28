@@ -3,6 +3,7 @@
 
 import calendar
 import logging
+import json
 
 from flask import Flask, jsonify, render_template, request
 from flask.json import JSONEncoder
@@ -10,6 +11,7 @@ from flask.ext.compress import Compress
 from datetime import datetime
 from s2sphere import *
 from pogom.utils import get_args
+from beaker import session
 
 from . import config
 from .models import Pokemon, Gym, Pokestop, ScannedLocation
@@ -27,13 +29,14 @@ class Pogom(Flask):
         self.route("/loc", methods=['GET'])(self.loc)
         self.route("/next_loc", methods=['POST'])(self.next_loc)
         self.route("/mobile", methods=['GET'])(self.list_pokemon)
+        self.route("/login", methods=['POST'])(self.auth_login)
 
     def fullmap(self):
         args = get_args()
         display = "inline"
         if args.fixed_location:
             display = "none"
-        
+
         return render_template('map.html',
                                lat=config['ORIGINAL_LATITUDE'],
                                lng=config['ORIGINAL_LONGITUDE'],
@@ -120,6 +123,26 @@ class Pogom(Flask):
                                pokemon_list=pokemon_list,
                                origin_lat=config['ORIGINAL_LATITUDE'],
                                origin_lng=config['ORIGINAL_LONGITUDE'])
+
+    def auth_login(self):
+        #part of query string
+        if request.args:
+            args = get_args()
+            username = request.args.get('username', type=str)
+            authorizedUsersObjUnparsed = args.authorizedUsers.replace("'", "\"")
+            authorizedUsersObj = json.loads(authorizedUsersObjUnparsed)
+            password = request.args.get('password', type=str)
+            if username in authorizedUsersObj:
+                guessedPassword = authorizedUsersObj[username]
+                if guessedPassword == password:
+                    return 'success'
+                else:
+                    return 'Usuario o contraseña inválidos, por favor intente denuevo...'
+            else:
+                return 'Usuario o contraseña inválidos, por favor intente denuevo...'
+        else:
+            return 'Por favor ingrese un usuario y contraseña...'
+
 
 
 class CustomJSONEncoder(JSONEncoder):

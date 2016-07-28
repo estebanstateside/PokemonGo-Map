@@ -51,6 +51,7 @@ def parse_config(args):
         args.gmaps_key = Config.get('Misc', 'Google_Maps_API_Key')
     args.host = Config.get('Misc', 'Host')
     args.port = Config.get('Misc', 'Port')
+    args.authorizedUsers = Config.get('Authorization', 'authorizedUsers')
 
     return args
 

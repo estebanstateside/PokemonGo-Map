@@ -853,9 +853,6 @@ $(function () {
         }
     });
 
-    // run interval timers to regularly update map and timediffs
-    window.setInterval(updateLabelDiffTime, 1000);
-    window.setInterval(updateMap, 5000);
 
     // Seutp UI element interactions
     $('#gyms-switch').change(function() {
