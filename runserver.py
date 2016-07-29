@@ -25,7 +25,6 @@ search_thread = Thread()
 def start_locator_thread(args):
     search_thread = Thread(target=search_loop, args=(args,))
     search_thread.daemon = True
-    search_thread.name = 'search_thread'
     search_thread.start()
 
 
@@ -86,9 +85,9 @@ if __name__ == '__main__':
     else:
         config['GMAPS_KEY'] = load_credentials(os.path.dirname(os.path.realpath(__file__)))['gmaps_key']
 
+
     # SEARCH THREADING
     for (locData) in searchLocationsObj.values():
-        log.info(locData)
         # PARSE POSITION
         position = get_pos_by_name(locData['location'])
         args.latitude = position[0]
@@ -96,10 +95,12 @@ if __name__ == '__main__':
         args.username = locData['username']
         args.password = locData['password']
         # INIT LOCATOR THREAD
-        start_locator_thread(args)
+        search_thread = Thread(target=search_loop, args=(args,))
+        search_thread.daemon = True
+        search_thread.start()
         # JOIN LOCATOR THREADS
         #while not search_thread.isAlive():
-        time.sleep(10)
+        time.sleep(5)
 
     # RUN THE MAIN APP
     app.run(threaded=True, debug=args.debug, host=args.host, port=args.port)
