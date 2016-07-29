@@ -5,6 +5,7 @@ import os
 import sys
 import logging
 import time
+import json
 
 from threading import Thread
 from flask_cors import CORS, cross_origin
@@ -29,15 +30,19 @@ def start_locator_thread(args):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(module)11s] [%(levelname)7s] %(message)s')
 
+    # LOGGING
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(module)11s] [%(levelname)7s] %(message)s')
     logging.getLogger("peewee").setLevel(logging.INFO)
     logging.getLogger("requests").setLevel(logging.WARNING)
     logging.getLogger("pogom.pgoapi.pgoapi").setLevel(logging.WARNING)
     logging.getLogger("pogom.pgoapi.rpc_api").setLevel(logging.INFO)
     logging.getLogger('werkzeug').setLevel(logging.ERROR)
 
+    # INITIALIZE THE SYSTEM
     args = get_args()
+    searchLocationsObjUnparsed = args.locations.replace("'", "\"")
+    searchLocationsObj = json.loads(searchLocationsObjUnparsed)
 
     config['parse_pokemon'] = not args.no_pokemon
     config['parse_pokestops'] = not args.no_pokestops
@@ -65,15 +70,10 @@ if __name__ == '__main__':
     if args.no_gyms:
         log.info('Parsing of Gyms disabled.')
 
-    config['ORIGINAL_LATITUDE'] = position[0]
-    config['ORIGINAL_LONGITUDE'] = position[1]
     config['LOCALE'] = args.locale
     config['CHINA'] = args.china
-
-    if not args.mock:
-        start_locator_thread(args)
-    else:
-        insert_mock_data()
+    config['ORIGINAL_LATITUDE'] = position[0]
+    config['ORIGINAL_LONGITUDE'] = position[1]
 
     app = Pogom(__name__)
 
@@ -86,9 +86,20 @@ if __name__ == '__main__':
     else:
         config['GMAPS_KEY'] = load_credentials(os.path.dirname(os.path.realpath(__file__)))['gmaps_key']
 
-    if args.no_server:
-        while not search_thread.isAlive():
-            time.sleep(1)
-        search_thread.join()
-    else:
-        app.run(threaded=True, debug=args.debug, host=args.host, port=args.port)
+    # SEARCH THREADING
+    for (locData) in searchLocationsObj.values():
+        log.info(locData)
+        # PARSE POSITION
+        position = get_pos_by_name(locData['location'])
+        args.latitude = position[0]
+        args.longitude = position[1]
+        args.username = locData['username']
+        args.password = locData['password']
+        # INIT LOCATOR THREAD
+        start_locator_thread(args)
+        # JOIN LOCATOR THREADS
+        #while not search_thread.isAlive():
+        time.sleep(10)
+
+    # RUN THE MAIN APP
+    app.run(threaded=True, debug=args.debug, host=args.host, port=args.port)

@@ -52,6 +52,7 @@ def parse_config(args):
     args.host = Config.get('Misc', 'Host')
     args.port = Config.get('Misc', 'Port')
     args.authorizedUsers = Config.get('Authorization', 'authorizedUsers')
+    args.locations = Config.get('Search_Settings', 'Locations')
 
     return args
 
