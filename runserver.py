@@ -19,13 +19,12 @@ from pogom.pgoapi.utilities import get_pos_by_name
 
 log = logging.getLogger(__name__)
 
-search_thread = Thread()
-
 def start_locator_thread(args):
     search_thread = Thread(target=search_loop, args=(args,))
     search_thread.daemon = True
     search_thread.name = 'search_thread'
     search_thread.start()
+    return search_thread
 
 
 if __name__ == '__main__':
@@ -71,9 +70,8 @@ if __name__ == '__main__':
     config['CHINA'] = args.china
 
     if not args.mock:
-        start_locator_thread(args)
+        search_thread = start_locator_thread(args)
         time.sleep(15)
-        start_locator_thread(args)
     else:
         insert_mock_data()
 
