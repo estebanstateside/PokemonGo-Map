@@ -72,6 +72,8 @@ if __name__ == '__main__':
 
     if not args.mock:
         start_locator_thread(args)
+        time.sleep(15)
+        start_locator_thread(args)
     else:
         insert_mock_data()
 
