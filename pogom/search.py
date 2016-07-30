@@ -123,7 +123,7 @@ def search_thread(args):
         else:
             log.info('Map Download failed. Trying again.')
 
-    time.sleep(0.5)
+    time.sleep(1)
 
 def process_search_threads(search_threads, curr_steps, total_steps):
     for thread in search_threads:
